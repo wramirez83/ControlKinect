@@ -1,0 +1,16 @@
+﻿<Window x:Class="ControlKinect.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ControlKinect"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Loaded="iniciarApp">
+        <TextBox x:Name="anguloActual" HorizontalAlignment="Left" Height="23" Margin="147,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="subirAngulo" Content="+" HorizontalAlignment="Center" Margin="205,149,549,0" VerticalAlignment="Top" Width="38" Background="{x:Null}" RenderTransformOrigin="-9.184,1.325" Click="BtnSubir"/>
+        <Button x:Name="bajarAngulo" Content="-" HorizontalAlignment="Center" Margin="147,149,607,0" VerticalAlignment="Top" Width="38" Click="BtnBajar" Background="{x:Null}"/>
+        <Label Content="Control de Kinect" HorizontalAlignment="Left" Margin="157,70,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.118,0.615"/>
+        <Image x:Name="mostrarVideo" HorizontalAlignment="Left" Height="282" Margin="362,44,0,0" VerticalAlignment="Top" Width="360"/>
+    </Grid>
+</Window>
