@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Kinect;
 
 namespace ControlKinect.procesamiento
 {
@@ -17,43 +18,34 @@ namespace ControlKinect.procesamiento
         {
             Console.WriteLine(matriz[0, 0]);
         }
-        public string analizar(double[,] matriz)
+        
+        public string analizar2(Skeleton skeleton)
         {
-            //hola = 1
-            //adios = 2
-            /*
-            matriz[0, 0] = manoDerechaVZ;
-            matriz[0, 1] = manoDerechaVX;
-            matriz[0, 2] = manoDerechaVY;
-            matriz[1, 0] = manoIzquiedaVZ;
-            matriz[1, 1] = manoIzquiedaVX;
-            matriz[1, 2] = manoIzquiedaVY;
-            matriz[2, 0] = cabezaZ;
-            matriz[2, 1] = cabezaXV;
-            matriz[2, 2] = cabezaYV;
-            matriz[3, 0] = codoDerechoZ;
-            matriz[3, 1] = codoDerechoX;
-            matriz[3, 2] = codoDerechoY;
-            matriz[4, 0] = hombroDerechoZ;
-            matriz[4, 1] = hombroDerechoX;
-            matriz[4, 2] = hombroDerechoY;
-            */
-            //Hola
-            if (matriz[0, 2] > matriz[3, 2] && matriz[0, 2] < matriz[4, 2])//ManoDerechaY > codoDerecho && ManoDerechaY<HombroDerechoY
+            //****************HOLA*********************
+            if (skeleton.Joints[JointType.HandRight].Position.Z < skeleton.Joints[JointType.Head].Position.Z)
             {
-                if (matriz[0, 1] > matriz[4, 1])//ManoDerecha X > hombroDerecho X
+                if (skeleton.Joints[JointType.HandRight].Position.Y > skeleton.Joints[JointType.ShoulderCenter].Position.Y)
                 {
-                    if (matriz[0, 1] > matriz[3, 1])//ManoDerecha X > codoDerecho X
+                    if (skeleton.Joints[JointType.HandRight].Position.X < skeleton.Joints[JointType.ShoulderRight].Position.X)
                     {
-                        
                         return "Hola";
                     }
                 }
-
             }
-            return "Pausa";
+            //****************FIN HOLA *****************
+            //****************ADIOS*********************
+            if(skeleton.Joints[JointType.ShoulderRight].Position.Y > skeleton.Joints[JointType.ElbowRight].Position.Y && skeleton.Joints[JointType.ElbowRight].Position.Y  < skeleton.Joints[JointType.HandRight].Position.Y )
+            {
+                if(skeleton.Joints[JointType.ElbowRight].Position.X < skeleton.Joints[JointType.HandRight].Position.X)
+                {
+                    return "Adios";
+                }
+            }
+            //***************FIN ADIOS******************
+                        return "Pausa";
 
         }
+        
 
     }
 }

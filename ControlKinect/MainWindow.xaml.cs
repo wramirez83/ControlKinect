@@ -40,9 +40,10 @@ namespace ControlKinect
         private const float RenderWidth = 640.0f;
         #endregion
         private double manoDerechaVZ, manoDerechaVX, manoDerechaVY, manoIzquiedaVZ, manoIzquiedaVX, manoIzquiedaVY, cabezaZ, cabezaXV, cabezaYV, codoDerechoZ, codoDerechoX, codoDerechoY, hombroDerechoZ, hombroDerechoX, hombroDerechoY;
-        private double[,] matriz = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
+        private double[,] matriz = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
         Procesamiento proceso = new Procesamiento();
         private string estado = "Pausa";
+        
 
         private void bestado(object sender, RoutedEventArgs e)
         {
@@ -72,8 +73,8 @@ namespace ControlKinect
             //Mostrar la imagen en nuestro control de imagen
             Image.Source = FuenteImagen;
             //***********************************************
-            anguloActual.Text = "0";
-            angulo = 0;
+            anguloActual.Text = "-9";
+            angulo = -9;
             
             miKinect = KinectSensor.KinectSensors.FirstOrDefault();
             try
@@ -294,8 +295,13 @@ namespace ControlKinect
             matriz[4, 0] = hombroDerechoZ;
             matriz[4, 1] = hombroDerechoX;
             matriz[4, 2] = hombroDerechoY;
+            matriz[5, 0] = skeleton.Joints[JointType.ShoulderCenter].Position.Y;
+            matriz[5, 1] = skeleton.Joints[JointType.ShoulderRight].Position.X;
+            matriz[5, 2] = skeleton.Joints[JointType.ShoulderCenter].Position.Y;
+
             //******************************FIN Matriz de Datos
-            estado = proceso.analizar(matriz);
+            //estado = proceso.analizar2(Ske);//proceso.analizar(matriz);
+            estado = proceso.analizar2(skeleton);
             if(estado != "Pausa")
             {
                 palabra.Text = estado;
