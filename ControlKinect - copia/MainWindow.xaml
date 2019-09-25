@@ -1,0 +1,56 @@
+﻿<Window x:Class="ControlKinect.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ControlKinect"
+        mc:Ignorable="d"
+        Title="Control Kinect" Height="561" Width="1119.5">
+    <Grid Margin="0,0,0,-4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="58*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="94*"/>
+            <ColumnDefinition Width="903*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.ColumnSpan="5" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="279" Margin="10,255,0,0" Stroke="Black" VerticalAlignment="Top" Width="303"/>
+
+        <TextBox x:Name="anguloActual" HorizontalAlignment="Left" Height="23" Margin="42,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="4"/>
+        <Button x:Name="subirAngulo" Content="+" HorizontalAlignment="Center" Margin="6,114,65,0" VerticalAlignment="Top" Width="38" Background="{x:Null}" RenderTransformOrigin="-9.184,1.325" Click="BtnSubir" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Button x:Name="bajarAngulo" Content="-" HorizontalAlignment="Center" Margin="42,114,20,0" VerticalAlignment="Top" Width="38" Click="BtnBajar" Background="{x:Null}" RenderTransformOrigin="-5.829,0.875" Grid.ColumnSpan="2"/>
+        <Label Content="Control de Kinect" HorizontalAlignment="Left" Margin="42,60,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.118,0.615" Grid.ColumnSpan="4"/>
+
+        <Image x:Name="Image" Margin="109,86,390,166" Grid.Column="4"/>
+        <Image x:Name="mostrarVideo" HorizontalAlignment="Left" Height="282" Margin="513,86,0,0" VerticalAlignment="Top" Width="360" Grid.Column="4"/>
+        <Label Content="Id Dispositivo:" HorizontalAlignment="Left" Margin="18,8,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.61,0.038" Grid.ColumnSpan="3" FontSize="14"/>
+        <Label x:Name="id" Content="" Grid.Column="3" HorizontalAlignment="Left" Margin="5,8,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.145,0.442" FontSize="14" Grid.ColumnSpan="2" Width="334.333" UseLayoutRounding="False" Background="#FFC6F1FB"/>
+        <Label Content="Video RGB" HorizontalAlignment="Left" Margin="647,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.61,0.038" FontSize="14" Grid.Column="4" FontWeight="Bold"/>
+        <Label Content="Video Esqueleto" HorizontalAlignment="Left" Margin="297,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.61,0.038" FontSize="14" Grid.Column="4" FontWeight="Bold"/>
+        <Label Content="Estado:" HorizontalAlignment="Left" Margin="18,31,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.61,0.038" Grid.ColumnSpan="2" FontSize="14"/>
+        <TextBlock x:Name="Message"  HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Background="Green" Foreground="Red" Margin="5,30,658,0" Grid.ColumnSpan="2" Width="334" Grid.Column="3" />
+        <TextBlock x:Name="palabra"  HorizontalAlignment="Center" VerticalAlignment="Top" Height="95" Background="#FF324F66" Foreground="White" Margin="10,160,799,0" Grid.ColumnSpan="5" Width="303" FontFamily="Kristen ITC" FontSize="16" TextAlignment="Center" ><Run Text="..Iniciando..."/></TextBlock>
+        <TextBlock x:Name="manoDerechaZ"  HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Background="#FF101936" Foreground="White" Margin="33,279,32,0" Grid.ColumnSpan="4" Width="144" Text="0" />
+        <Label Content="Z" HorizontalAlignment="Left" Margin="15,280,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.61,0.038" FontSize="14"/>
+        <TextBlock x:Name="manoDerechaX"  HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Background="#FF101936" Foreground="White" Margin="33,314,32,0" Grid.ColumnSpan="4" Width="144" Text="0" />
+        <Label Content="X" HorizontalAlignment="Left" Margin="15,315,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.61,0.038" FontSize="14"/>
+        <TextBlock x:Name="manoDerechaY"  HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Background="#FF101936" Foreground="White" Margin="33,355,32,0" Grid.ColumnSpan="4" Width="144" Text="0" />
+        <Label Content="Y" HorizontalAlignment="Left" Margin="15,355,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.61,0.038" FontSize="14"/>
+        <Label Content="Mano Derecha" HorizontalAlignment="Left" Margin="0,255,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.61,0.038" Grid.ColumnSpan="3" FontSize="14" Grid.Column="1"/>
+        <TextBlock x:Name="manoIzquierdaZ"  HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Background="#FF101936" Foreground="White" Margin="37,414,28,0" Grid.ColumnSpan="4" Width="144" Text="0" />
+        <Label Content="Z" HorizontalAlignment="Left" Margin="19,415,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.61,0.038" FontSize="14"/>
+        <TextBlock x:Name="manoIzquierdaX"  HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Background="#FF101936" Foreground="White" Margin="37,449,28,0" Grid.ColumnSpan="4" Width="144" Text="0" />
+        <Label Content="X" HorizontalAlignment="Left" Margin="19,450,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.61,0.038" FontSize="14"/>
+        <TextBlock x:Name="manoIzquierdaY"  HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Background="#FF101936" Foreground="White" Margin="37,490,28,0" Grid.ColumnSpan="4" Width="144" Text="0" />
+        <Label Content="Y" HorizontalAlignment="Left" Margin="19,490,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.61,0.038" FontSize="14"/>
+        <Label Content="Mano Izquierda" HorizontalAlignment="Left" Margin="4,390,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.61,0.038" Grid.ColumnSpan="3" FontSize="14" Grid.Column="1"/>
+        <Label Content="Cabeza Z" HorizontalAlignment="Left" Margin="10,260,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.61,0.038" FontSize="14" Grid.Column="4"/>
+        <TextBlock x:Name="cabeza"  HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Background="#FF101936" Foreground="White" Margin="80,288,807,0" Grid.ColumnSpan="2" Width="110" Text="0" Grid.Column="3" TextAlignment="Center" />
+        <Label Content="Cabeza X" HorizontalAlignment="Left" Margin="10,326,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.61,0.038" FontSize="14" Grid.Column="4"/>
+        <TextBlock x:Name="cabezaX"  HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Background="#FF101936" Foreground="White" Margin="80,354,807,0" Grid.ColumnSpan="2" Width="110" Text="0" Grid.Column="3" TextAlignment="Center" RenderTransformOrigin="0.482,2.5" />
+        <Label Content="Cabeza Y" HorizontalAlignment="Left" Margin="10,394,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.61,0.038" FontSize="14" Grid.Column="4"/>
+        <TextBlock x:Name="cabezaY"  HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Background="#FF101936" Foreground="White" Margin="80,422,807,0" Grid.ColumnSpan="2" Width="110" Text="0" Grid.Column="3" TextAlignment="Center" RenderTransformOrigin="0.482,2.5" />
+        <Button Content="Borrar" Grid.Column="3" HorizontalAlignment="Left" Margin="80,86,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Click="bestado"/>
+
+    </Grid>
+</Window>

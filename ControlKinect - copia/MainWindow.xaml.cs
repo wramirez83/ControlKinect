@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Kinect;
 using ControlKinect.procesamiento;
-using System.Speech.Synthesis;
 
 
 namespace ControlKinect
