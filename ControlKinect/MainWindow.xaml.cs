@@ -44,7 +44,8 @@ namespace ControlKinect
         private double[,] matriz = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
         Procesamiento proceso = new Procesamiento();
         private string estado = "Pausa";
-        
+        SintetizarVoz sintetizar = new SintetizarVoz();
+
 
         private void bestado(object sender, RoutedEventArgs e)
         {
@@ -306,6 +307,7 @@ namespace ControlKinect
             if(estado != "Pausa")
             {
                 palabra.Text = estado;
+                sintetizar.hablar(estado);
             }
             //****************************************************
             // Render Articulaciones

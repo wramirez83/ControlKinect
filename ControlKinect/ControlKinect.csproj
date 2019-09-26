@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="procesamiento\palabras.cs" />
     <Compile Include="procesamiento\procesamiento.cs" />
+    <Compile Include="procesamiento\SintetizarVoz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
