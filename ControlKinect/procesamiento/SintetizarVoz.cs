@@ -11,11 +11,13 @@ namespace ControlKinect.procesamiento
     class SintetizarVoz
     {
         SpeechSynthesizer syn = new SpeechSynthesizer();
-       
-        public void hablar(string palabra)
+        public void Config()
         {
             syn.SetOutputToDefaultAudioDevice();
             syn.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Adult);
+        }
+        public void hablar(string palabra)
+        {
             syn.Speak(palabra);
         }
     }

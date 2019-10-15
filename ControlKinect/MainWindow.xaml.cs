@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Microsoft.Kinect;
 using ControlKinect.procesamiento;
 using System.Speech.Synthesis;
+using System.IO;
 
 
 namespace ControlKinect
@@ -45,7 +46,9 @@ namespace ControlKinect
         Procesamiento proceso = new Procesamiento();
         private string estado = "Pausa";
         SintetizarVoz sintetizar = new SintetizarVoz();
-
+        Reconocimiento rec = new Reconocimiento();
+        string palabraTemporal = "";
+        
 
         private void bestado(object sender, RoutedEventArgs e)
         {
@@ -55,17 +58,28 @@ namespace ControlKinect
         public MainWindow()
         {
             InitializeComponent();
+            sintetizar.Config();
+            
             Loaded += iniciarApp;
             Unloaded += CerrarApp;
            
-;
+        }
+        private void LeerHablar(string a)
+        {
+            if(palabraTemporal != a)
+            {
+               // sintetizar.hablar(a);
+                //palabraTemporal = a;
+            }
+            
         }
 
-        private void iniciarApp(object sender, RoutedEventArgs e)
+
+            private void iniciarApp(object sender, RoutedEventArgs e)
         {
            
             //*************DECLARAMOS PROCESAMIENtO*************
-            //procesamiento proceso = new procesamiento();
+           
             
             //*********************************************
             //Cree un grupo de dibujo que se usará para dibujar
@@ -75,8 +89,8 @@ namespace ControlKinect
             //Mostrar la imagen en nuestro control de imagen
             Image.Source = FuenteImagen;
             //***********************************************
-            anguloActual.Text = "-9";
-            angulo = -9;
+            anguloActual.Text = "0";
+            angulo = 0;
             
             miKinect = KinectSensor.KinectSensors.FirstOrDefault();
             try
@@ -280,36 +294,16 @@ namespace ControlKinect
             hombroDerechoZ = skeleton.Joints[JointType.ShoulderRight].Position.Z;
             hombroDerechoX = skeleton.Joints[JointType.ShoulderRight].Position.X;
             hombroDerechoY = skeleton.Joints[JointType.ShoulderRight].Position.Y;
-            //*****************************Matriz de Datos
-            //0 brazo derecho, 1 Brazo Izquierdo, 2 Cabeza, 3 Codo Derecho, 4 Hombro Derecho
-            matriz[0, 0] = manoDerechaVZ;
-            matriz[0, 1] = manoDerechaVX;
-            matriz[0, 2] = manoDerechaVY;
-            matriz[1, 0] = manoIzquiedaVZ;
-            matriz[1, 1] = manoIzquiedaVX;
-            matriz[1, 2] = manoIzquiedaVY;
-            matriz[2, 0] = cabezaZ;
-            matriz[2, 1] = cabezaXV;
-            matriz[2, 2] = cabezaYV;
-            matriz[3, 0] = codoDerechoZ;
-            matriz[3, 1] = codoDerechoX;
-            matriz[3, 2] = codoDerechoY;
-            matriz[4, 0] = hombroDerechoZ;
-            matriz[4, 1] = hombroDerechoX;
-            matriz[4, 2] = hombroDerechoY;
-            matriz[5, 0] = skeleton.Joints[JointType.ShoulderCenter].Position.Y;
-            matriz[5, 1] = skeleton.Joints[JointType.ShoulderRight].Position.X;
-            matriz[5, 2] = skeleton.Joints[JointType.ShoulderCenter].Position.Y;
-
-            //******************************FIN Matriz de Datos
-            //estado = proceso.analizar2(Ske);//proceso.analizar(matriz);
+            //****************estado = proceso.analizar2(Ske);//proceso.analizar(matriz);
             estado = proceso.analizar2(skeleton);
             if(estado != "Pausa")
             {
                 palabra.Text = estado;
-                sintetizar.hablar(estado);
+                // sintetizar.hablar(estado);
+                LeerHablar(estado);
             }
             //****************************************************
+            
             // Render Articulaciones
             foreach (Joint joint in skeleton.Joints)
             {
@@ -422,6 +416,22 @@ namespace ControlKinect
                     frameImagen.Width * frameImagen.BytesPerPixel
                     );
             }
+        }
+        void rutaVideo(string ruta)
+        {
+            //var ruta = @"c:\videos\1.mp4";
+           
+                try
+                {
+                    respuesta.Source = new Uri(ruta);
+                }
+                catch (Exception)
+                {
+                    //throw;
+                }
+                    
+            
+            
         }
 
         private void CerrarApp(object sender, RoutedEventArgs e)

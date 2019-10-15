@@ -16,7 +16,7 @@ namespace ControlKinect.procesamiento
         }
         public void escribir(string[,] matriz)
         {
-            Console.WriteLine(matriz[0, 0]);
+           
         }
         
         public string analizar2(Skeleton skeleton)
@@ -42,7 +42,21 @@ namespace ControlKinect.procesamiento
                 }
             }
             //***************FIN ADIOS******************
-                        return "Pausa";
+
+            //****************BAÑO*********************
+            if (skeleton.Joints[JointType.HandRight].Position.Y > skeleton.Joints[JointType.WristRight].Position.Y && skeleton.Joints[JointType.WristRight].Position.Y > skeleton.Joints[JointType.ElbowRight].Position.Y && skeleton.Joints[JointType.ElbowRight].Position.Y < skeleton.Joints[JointType.ShoulderRight].Position.Y && skeleton.Joints[JointType.Head].Position.Y > skeleton.Joints[JointType.HandRight].Position.Y)
+            {
+                if (skeleton.Joints[JointType.WristRight].Position.X > skeleton.Joints[JointType.ShoulderRight].Position.X)
+                {
+                    if(skeleton.Joints[JointType.WristRight].Position.Z < skeleton.Joints[JointType.ShoulderCenter].Position.Z && skeleton.Joints[JointType.HipCenter].Position.Z < skeleton.Joints[JointType.ElbowRight].Position.Z)
+                    {
+                        return "Baño";
+                    }
+                    
+                }
+            }
+            //***************FIN BAÑO************************
+            return "Pausa";
 
         }
         
