@@ -298,7 +298,7 @@ namespace ControlKinect
             estado = proceso.analizar2(skeleton);
             if(estado != "Pausa")
             {
-                palabra.Text = estado;
+                palabra.Text += " " + estado;
                 // sintetizar.hablar(estado);
                 LeerHablar(estado);
             }
