@@ -48,6 +48,7 @@ namespace ControlKinect
         SintetizarVoz sintetizar = new SintetizarVoz();
         Reconocimiento rec = new Reconocimiento();
         string palabraTemporal = "";
+        string caja = "";
         
 
         private void bestado(object sender, RoutedEventArgs e)
@@ -298,9 +299,14 @@ namespace ControlKinect
             estado = proceso.analizar2(skeleton);
             if(estado != "Pausa")
             {
-                palabra.Text += " " + estado;
-                // sintetizar.hablar(estado);
-                LeerHablar(estado);
+                if(estado != caja)
+                {
+                    palabra.Text += " " + estado + "\n";
+                    // sintetizar.hablar(estado);
+                    LeerHablar(estado);
+                    caja = estado;
+                }
+                
             }
             //****************************************************
             
